@@ -6,7 +6,7 @@ DB=DBModule()
 
 @app.route("/")
 def index():
-    pass
+    return render_template("index.html")
 
 @app.route("/list")
 def post_list():
