@@ -20,9 +20,26 @@ def post(pid):
 def login():
     pass
 
+@app.route("/login_done")
+def login_done():
+    pass
+
 @app.route("/signin")
 def signin():
-    pass
+    return render_template("signin.html")
+
+@app.route("/signin_done", methods=["get"])
+def signin_done():
+    email=request.args.get("email")
+    uid=request.args.get("id")
+    pwd=request.args.get("pwd")
+    name=request.args.get("name")
+    print(email,uid,pwd,name)
+
+    if DB.signin(email,uid,pwd,name):
+        return redirect(url_for("index"))
+    else:
+        return redirect(url_for("signin"))
 
 @app.route("/user/<uid>")
 def user(uid):
